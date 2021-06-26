@@ -2,24 +2,33 @@
 const express = require('express')
 const app = express()
 
-const bodyParser = require('body-parser')
-const bcrypt = require('bcrypt')
+const PORT = process.env.PORT || 3000
 
 //Models
 const UserModel = require('./models/user')
 
-const PORT = process.env.PORT || 3000
+const bodyParser = require('body-parser')
+const bcrypt = require('bcrypt')
+const cookieSession = require('cookie-session');
+const { request, response } = require('express')
 
 app.use(bodyParser.json())
 
+app.use(
+    cookieSession({
+        secret: 'twittor-session',
+        maxAge: 5 * 60 * 1000
+    })
+)
+
 //Endpoints
 app.post('/register', async (request, response) => {
-    const  { name, first_lastname, second_lastname, email, password } = request.body
+    const  { name, first_lastname, second_lastname, nickname, email, password } = request.body
     const userExist = await UserModel.findOne({ email: email })
 
     if(!userExist){
         try {
-            await UserModel.create({  name, first_lastname, second_lastname, email, password: await bcrypt.hash(password, 10) })    
+            await UserModel.create({  name, first_lastname, second_lastname, nickname, email, password: await bcrypt.hash(password, 10) })    
             response.json({'created': true })    
         } catch (error) {    
             response.status(500).json({ error})
@@ -36,6 +45,7 @@ app.post('/login', async (request, response) => {
     if (user){    
         const match = await bcrypt.compare(password, user.password)
         if(match){
+            req.session.userId = user._id;
             response.json({ authenticated: true })
             return match ? user : null;
          }else{
@@ -44,6 +54,12 @@ app.post('/login', async (request, response) => {
     } else {
         response.json({ findUser: false })
     }                 
+})
+
+
+app.get('/logout', async (request, response) => {
+    request.session.userId = null;
+    response.json({ endSession: true })   
 })
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
