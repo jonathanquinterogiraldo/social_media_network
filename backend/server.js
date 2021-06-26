@@ -1,64 +1,49 @@
-const { response } = require('express')
+//Express
 const express = require('express')
+const app = express()
 
 const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt')
 
+//Models
 const UserModel = require('./models/user')
-//Express
-const app = express()
-const PORT = process.env.PORT || 3000
 
-//Mongo
-const database = require('./models/database')
+const PORT = process.env.PORT || 3000
 
 app.use(bodyParser.json())
 
-
-// UserSchema.statics.authenticate = async (email, password) => {
-//     const useer = await this.model("User")
-
-
-// }
-
-// app.post('/login', async (require, response) => {
-//     const { email, password } = require.body
-
-//     const user = await UserModel.authenticate(email, password)
-//     if(user){
-//         require.session.userId = user.userId
-//         response.redirect('/')
-//     }
-//     response.redirect('/login')
-
-// })
-
+//Endpoints
 app.post('/register', async (request, response) => {
-
     const  { name, first_lastname, second_lastname, email, password } = request.body
+    const userExist = await UserModel.findOne({ email: email })
 
-    try {
-        await UserModel.create({  name, first_lastname, second_lastname, email, password })    
+    if(!userExist){
+        try {
+            await UserModel.create({  name, first_lastname, second_lastname, email, password: await bcrypt.hash(password, 10) })    
+            response.json({'created': true })    
+        } catch (error) {    
+            response.status(500).json({ error})
+        }
+    }else{
+        response.json({ userExist: true })
+    }    
+})
 
-        console.log ({ name, first_lastname, second_lastname, email, password })
-    
-        response.json({'created': true })
+app.post('/login', async (request, response) => {
+    const { email, password } = request.body     
+    const user = await UserModel.findOne({ email: email })
 
-    } catch (error) {
-        response.status(500).json({ error})
-    }
-
-   
-    // const { name, firt_lastname, second_lastname, email, password } = require.body
-
-
-    // user.save(async (error) => {
-    //     if(error){
-    //         console.log(error)
-    //         return
-    //     }
-    //     console.log("User created")
-    // })
+    if (user){    
+        const match = await bcrypt.compare(password, user.password)
+        if(match){
+            response.json({ authenticated: true })
+            return match ? user : null;
+         }else{
+            response.json({ wrongPassword: true })
+         }              
+    } else {
+        response.json({ findUser: false })
+    }                 
 })
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))

@@ -6,7 +6,7 @@ mongoose.connect(url, {
     useUnifiedTopology: true
 });
 
-mongoose.connection.on("error", (error) => console.log("MONGOOSE ERROR"));
-mongoose.connection.once("open", () => console.log("MONGOOSE CONECTED"));
+mongoose.connection.on("error", (error) => console.log(`MONGOOSE ERROR: ${error}`));
+mongoose.connection.once("open", () => console.log(`MONGOOSE CONECTED`));
 
 module.exports = mongoose
