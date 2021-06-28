@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const url = 'mongodb+srv://jonathanqgdev:Mybiwis1053@cluster0.we1qx.mongodb.net/twittor'
+const url = process.env.DB_URL
 
 mongoose.connect(url, { 
     useNewUrlParser: true ,

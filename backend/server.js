@@ -2,7 +2,10 @@
 const express = require('express')
 const app = express()
 
-const PORT = process.env.PORT || 3000
+//Variables 
+require('dotenv').config();
+
+const PORT = process.env.PORT
 
 //Models
 const UserModel = require('./models/user')
@@ -24,7 +27,7 @@ app.use(
 //Endpoints
 app.post('/register', async (request, response) => {
     const  { name, first_lastname, second_lastname, nickname, email, password } = request.body
-    const userExist = await UserModel.findOne({ email: email })
+    const userExist = await UserModel.findOne({ email })
 
     if(!userExist){
         try {
