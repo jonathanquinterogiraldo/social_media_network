@@ -1,14 +1,5 @@
-const { model } = require('mongoose')
 const UserModel = require('../models/user.model')
 const bcrypt = require('bcrypt')
-//const cookieSession = require('cookie-session');
-
-// app.use(
-//     cookieSession({
-//         secret: 'twittor-session',
-//         maxAge: 5 * 60 * 1000
-//     })
-// )
 
 module.exports = {
     async register(request, response) {
@@ -34,7 +25,7 @@ module.exports = {
         if (user){    
             const match = await bcrypt.compare(password, user.password)
             if(match){
-                //request.session.userId = user._id;
+                request.session.userId = user._id;
                 response.json({ authenticated: true })
                 return match ? user : null;
              }else{
@@ -45,7 +36,7 @@ module.exports = {
         }                 
     },
     async logout(request, response) {
-        //request.session.userId = null;
+        request.session.userId = null;
         response.json({ endSession: true })   
     }
 }
