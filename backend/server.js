@@ -6,6 +6,7 @@ const express = require('express')
 const cookieSession = require('cookie-session');
 const db = require('./database')
 const userRouter = require('../backend/routes/user')
+const postRouter = require('../backend/routes/post')
 
 //Express
 const app = express()
@@ -26,6 +27,7 @@ app.use(
 
 //Routes
 app.use('/users', userRouter)
+app.use('/posts', postRouter)
 
 //Express initialization
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
