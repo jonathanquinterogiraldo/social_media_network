@@ -26,7 +26,7 @@ module.exports = {
             const match = await bcrypt.compare(password, user.password)
             if(match){
                 request.session.userId = user._id;
-                response.json({ authenticated: true })
+                response.json({ authenticated: true })                
                 return match ? user : null;
              }else{
                 response.json({ wrongPassword: true })
