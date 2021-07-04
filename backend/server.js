@@ -15,7 +15,7 @@ const PORT = process.env.PORT
 //Database
 db()
 
-//Midlewares
+//Middlewares
 app.use(express.json())
 
 app.use(
@@ -30,5 +30,8 @@ app.use('/users', userRouter)
 app.use('/posts', postRouter)
 
 //Express initialization
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`)
+})
+
 
