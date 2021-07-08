@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login'
+import Home from './components/Home'
 export class App extends Component {
   // constructor(props){
   //   super(props);  //  
@@ -18,7 +19,10 @@ export class App extends Component {
         <Switch>
           <Route exact path='/'>
             <Login/>
-          </Route> 
+          </Route>
+          <Route exact path='/Home'>
+            <Home/>
+          </Route>
         </Switch>    
       </div>
     );

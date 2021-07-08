@@ -1,21 +1,26 @@
 import React, {Component} from "react"
 import axios from 'axios'
 import { Form, Button, Col, Container, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import Home from './Home'
+import { useHistory } from "react-router-dom"
 
+require('dotenv').config();
+
+const apiUrl = process.env.REACT_APP_API_URL
 class Login extends Component{
 
     handleSubmit = (event) => {
          event.preventDefault()
 
         const data = {           
-            "email": "jonathan.quintero2657@gmail.com",
-            "password": "123456"    
+            "email": this.email,
+            "password": this.password    
         }        
-       
-        axios.post(`http://localhost:3001/users/login`, data).then(
+       console.log(data)            
+            axios.post(`${apiUrl}/users/login`, data).then(
             data => {
-                console.log(data)
+                console.log(data)     
             }
         ).catch(
             error => {
@@ -37,7 +42,9 @@ class Login extends Component{
                     <Form.Row>
                         <Col sm='auto'>
                             <Form.Label>Correo</Form.Label>
-                            <Form.Control placeholder="Digite su correo" />
+                            <Form.Control type='email'
+                                          placeholder="Digite su correo" 
+                                          onChange={ e => this.email = e.target.value }/>
                         </Col>
                     </Form.Row>
                 </Form.Group>
@@ -45,7 +52,9 @@ class Login extends Component{
                     <Form.Row>
                         <Col sm='auto'>
                             <Form.Label>Contraseña</Form.Label>
-                            <Form.Control placeholder="Digite su contraseña" />
+                            <Form.Control type='password'
+                                          placeholder="Digite su contraseña" 
+                                          onChange={ e => this.password = e.target.value } />
                         </Col>
                     </Form.Row>
                 </Form.Group>
