@@ -26,13 +26,13 @@ module.exports = {
             const match = await bcrypt.compare(password, user.password)
             if(match){
                 request.session.userId = user._id;
-                response.json({ authenticated: true })                
+                response.status(200).json({ authenticated: true })                
                 return match ? user : null;
              }else{
-                response.json({ wrongPassword: true })
+                response.status(401).json({ wrongPassword: true })
              }              
         } else {
-            response.json({ findUser: false })
+            response.status(401).json({ findUser: false })
         }                 
     },
     async logout(request, response) {

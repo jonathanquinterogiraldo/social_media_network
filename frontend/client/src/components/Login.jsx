@@ -1,38 +1,46 @@
-import React, {Component} from "react"
+import React from "react"
 import axios from 'axios'
 import { Form, Button, Col, Container, Row } from 'react-bootstrap'
-import { Link, Redirect } from 'react-router-dom'
-import Home from './Home'
+import { useForm } from 'react-hook-form'
 import { useHistory } from "react-router-dom"
 
 require('dotenv').config();
 
 const apiUrl = process.env.REACT_APP_API_URL
-class Login extends Component{
 
-    handleSubmit = (event) => {
-         event.preventDefault()
+function Login(){
 
-        const data = {           
-            "email": this.email,
-            "password": this.password    
-        }        
-       console.log(data)            
-            axios.post(`${apiUrl}/users/login`, data).then(
+    const history = useHistory();
+
+    const {register, handleSubmit} = useForm();
+
+    const email = register('email',{
+        require: true
+    })
+
+    const password = register('password',{
+        require: true
+    })
+
+    const onSubmit = (data) => {
+        console.log(data)
+        axios.post(`${apiUrl}/users/login`, data).then(
             data => {
-                console.log(data)     
+                if(data){
+                    console.log(data)
+                    history.push('/home')                      
+                }    
             }
         ).catch(
             error => {
                 console.log(error)
             }
-        )
-    }
-  
-    render(){
-        return(
-            <div className='Login'> 
-            <Form onSubmit={ this.handleSubmit }>
+        )    
+    }   
+    
+    return(      
+        <div>     
+            <Form onSubmit={handleSubmit(onSubmit)}>
                 <Container>
                     <Row >
                         <Col><h3>Inicio de Sesión</h3></Col>
@@ -43,8 +51,11 @@ class Login extends Component{
                         <Col sm='auto'>
                             <Form.Label>Correo</Form.Label>
                             <Form.Control type='email'
-                                          placeholder="Digite su correo" 
-                                          onChange={ e => this.email = e.target.value }/>
+                                            placeholder='Digite su correo'                                            
+                                            onChange={email.onChange}
+                                            onBlur={email.onBlur}
+                                            name={email.name}
+                                            ref={email.ref}/>
                         </Col>
                     </Form.Row>
                 </Form.Group>
@@ -53,16 +64,18 @@ class Login extends Component{
                         <Col sm='auto'>
                             <Form.Label>Contraseña</Form.Label>
                             <Form.Control type='password'
-                                          placeholder="Digite su contraseña" 
-                                          onChange={ e => this.password = e.target.value } />
+                                           placeholder='Digite su correo'
+                                           onChange={password.onChange}
+                                           onBlur={password.onBlur}
+                                           name={password.name}
+                                           ref={password.ref}/>
                         </Col>
                     </Form.Row>
                 </Form.Group>
                 <Button type='submit'>Enviar</Button>                
             </Form>            
-            </div>    
-        )
-    }    
-}
+        </div>   
+    )
+}    
 
 export default Login
