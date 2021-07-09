@@ -17,8 +17,9 @@ module.exports = {
         }    
     },
     async posts(request, response){
-
-        if(request.session.userId){
+        console.log(request.session.userId)
+       // if(request.session.userId){
+            
             try{                
                 const allPosts = await PostModel.find({})
                 response.json({ allPosts })
@@ -26,8 +27,8 @@ module.exports = {
                 response.status(500).json({ error })
                 console.log(error)
             }            
-        } else{
-            response.json({ userSession: false })
-        }
+        // } else{
+        //     response.json({ userSession: false })
+        // }
     }
 }

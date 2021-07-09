@@ -26,8 +26,9 @@ module.exports = {
             const match = await bcrypt.compare(password, user.password)
             if(match){
                 request.session.userId = user._id;
+                console.log('sdfsdaf' + request.session.userId)
                 response.status(200).json({ authenticated: true })                
-                return match ? user : null;
+                //return match ? user : null;
              }else{
                 response.status(401).json({ wrongPassword: true })
              }              
