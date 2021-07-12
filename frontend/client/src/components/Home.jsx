@@ -1,39 +1,32 @@
-import React, {Component} from "react"
+import React, {useEffect, useState} from "react"
 import axios from 'axios'
 import { Form, Button, Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-class Home extends Component{
+const apiUrl = process.env.REACT_APP_API_URL
 
-    // handleSubmit = (event) => {
-    //      event.preventDefault()
+function Home() {
 
-    //     const data = {           
-    //         "email": "jonathan.quintero2657@gmail.com",
-    //         "password": "123456"    
-    //     }        
-       
-    //     axios.post(`http://localhost:3001/users/login`, data).then(
-    //         data => {
-    //             console.log(data)
-    //         }
-    //     ).catch(
-    //         error => {
-    //             console.log(error)
-    //         }
-    //     )
+    const [posts, setPosts] = useState([])
+
+    useEffect(() => {
+            axios.get(`${apiUrl}/posts/posts`).then(
+            data => {                 
+                //console.log(data)
+                setPosts(data.data.allPosts)     
+            }
+        ).catch(
+            error => {
+                console.log(error)
+            }
+        ) 
+    }, [])    
     
-  
-    render(){
-        return(
-            <div className='Home'> 
-            Hola
-            
-            </div>    
-        )
-    } 
-    
-}
-
+    return(
+        <div className='Home'> 
+            {posts.map((post) => <p key={post._id}>{post.content}</p>)}
+        </div>    
+    )
+} 
 
 export default Home
