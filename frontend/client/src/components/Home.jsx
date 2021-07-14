@@ -11,9 +11,11 @@ function Home() {
 
     useEffect(() => {
             axios.get(`${apiUrl}/posts/posts`).then(
-            data => {                 
-                //console.log(data)
-                setPosts(data.data.allPosts)     
+                data => { 
+                    if(data.data.allPosts){
+                        setPosts(data.data.allPosts) 
+                    }                
+                //console.log(data)                    
             }
         ).catch(
             error => {
