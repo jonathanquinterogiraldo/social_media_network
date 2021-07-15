@@ -7,9 +7,9 @@ const apiUrl = process.env.REACT_APP_API_URL
 
 function Register() {
 
-    const history = useHistory();
+    const history = useHistory()
 
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit} = useForm()
 
     const name = register('name',{
         require: true
@@ -52,7 +52,7 @@ function Register() {
     }   
     
     return(
-        <div class='Register'>      
+        <div className='Register'>      
         <Form onSubmit={handleSubmit(onSubmit)}>
             <Container>
                 <Row >

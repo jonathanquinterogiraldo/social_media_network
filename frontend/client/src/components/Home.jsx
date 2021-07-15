@@ -10,7 +10,14 @@ function Home() {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-            axios.get(`${apiUrl}/posts/posts`).then(
+            axios({
+                method: 'GET',
+                baseURL: apiUrl,
+                url: '/posts/posts',
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            }).then(
                 data => { 
                     if(data.data.allPosts){
                         setPosts(data.data.allPosts) 

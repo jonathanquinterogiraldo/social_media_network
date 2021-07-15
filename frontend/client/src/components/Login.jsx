@@ -4,7 +4,6 @@ import { Form, Button, Col, Container, Row } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { useHistory } from "react-router-dom"
 
-require('dotenv').config();
 
 const apiUrl = process.env.REACT_APP_API_URL
 
@@ -28,6 +27,7 @@ function Login(){
             data => {
                 if(data){
                     console.log(data)
+                    localStorage.setItem('token', data.data.token)
                     history.push('/home')                      
                 }    
             }
