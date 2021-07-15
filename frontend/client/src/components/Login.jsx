@@ -22,8 +22,7 @@ function Login(){
     })
 
     const onSubmit = (data) => {
-        console.log(data)
-        //axios.post(`${apiUrl}/users/login`, data)
+        console.log(data)        
         axios({
             method: 'POST',
             baseURL: apiUrl,

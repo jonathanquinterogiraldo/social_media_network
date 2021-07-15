@@ -2,10 +2,16 @@ import React, {useEffect, useState} from "react"
 import axios from 'axios'
 import { Form, Button, Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { useHistory } from "react-router-dom"
 
 const apiUrl = process.env.REACT_APP_API_URL
 
 function Home() {
+
+    const history = useHistory()
+
+    const { handleSubmit } = useForm();
 
     const [posts, setPosts] = useState([])
 
@@ -21,8 +27,7 @@ function Home() {
                 data => { 
                     if(data.data.allPosts){
                         setPosts(data.data.allPosts) 
-                    }                
-                //console.log(data)                    
+                    }                        
             }
         ).catch(
             error => {
@@ -30,11 +35,18 @@ function Home() {
             }
         ) 
     }, [])  
-    
+
+    const onSubmit = () => {        
+        localStorage.removeItem('token')
+        history.push('/login')    
+    }       
     
     return(
         <div className='Home'> 
-            {posts.map((post) => <p key={post._id}>{post.content}</p>)}          
+            {posts.map((post) => <p key={post._id}>{post.content}</p>)}
+            <Form onSubmit={handleSubmit(onSubmit)}> 
+                <Button variant="danger" type='submit'>Salir</Button>   
+            </Form>      
         </div>    
     )
 } 
