@@ -3,10 +3,10 @@ require('dotenv').config();
 
 //Require
 const express = require('express')
-const cookieSession = require('cookie-session');
 const db = require('./database')
 const userRouter = require('../backend/routes/user')
 const postRouter = require('../backend/routes/post')
+const cors = require('cors')
 
 //Express
 const app = express()
@@ -17,14 +17,7 @@ db()
 
 //Middlewares
 app.use(express.json())
-
-
-app.use(
-    cookieSession({
-        secret: 'twittor-session',
-        maxAge: 5 * 60 * 1000
-    })
-)
+app.use(cors())
 
 //Routes
 app.use('/users', userRouter)

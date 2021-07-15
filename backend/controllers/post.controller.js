@@ -16,19 +16,17 @@ module.exports = {
             response.json({ userSession: false })
         }    
     },
-    async posts(request, response){
-        console.log(request.session.userId)
-       // if(request.session.userId){
+    async posts(request, response){    
             
-            try{                
-                const allPosts = await PostModel.find({})
-                response.json({ allPosts })
+            try{  
+                if(request.user){
+                    const allPosts = await PostModel.find({})
+                    response.json({ allPosts })
+                }    
             }catch(error){
                 response.status(500).json({ error })
                 console.log(error)
             }            
-        // } else{
-        //     response.json({ userSession: false })
-        // }
+       
     }
 }
