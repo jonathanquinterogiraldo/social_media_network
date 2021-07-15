@@ -29,11 +29,12 @@ function Home() {
                 console.log(error)
             }
         ) 
-    }, [])    
+    }, [])  
+    
     
     return(
         <div className='Home'> 
-            {posts.map((post) => <p key={post._id}>{post.content}</p>)}
+            {posts.map((post) => <p key={post._id}>{post.content}</p>)}          
         </div>    
     )
 } 

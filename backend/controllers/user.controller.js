@@ -6,7 +6,7 @@ module.exports = {
     async register(request, response) {    
         const  { email, password, ...data  } = request.body
         const userExist = await UserModel.findOne({ email })
-    
+        console.log(email, password)
         if(!userExist){
             try {
                 const encriptedPassword = await bcrypt.hash(password, 10)
@@ -28,7 +28,7 @@ module.exports = {
     async login(request, response) {
         const { email, password } = request.body     
         const user = await UserModel.findOne({ email })
-    
+        console.log(email, password, user)
         if (user){    
             const match = await bcrypt.compare(password, user.password)
             if(match){

@@ -36,11 +36,17 @@ function Register() {
     })
 
     const onSubmit = (data) => {
-        console.log(data)
-        axios.post(`${apiUrl}/users/register`, data).then(
+        console.log(data)    
+        axios({
+            method: 'POST',
+            baseURL: apiUrl,
+            url: '/users/register',
+            data: data           
+        }) .then(
             data => {
                 if(data){
                     console.log(data)
+                    localStorage.setItem('token', data.data.token)
                     history.push('/home')                      
                 }    
             }

@@ -23,7 +23,14 @@ function Login(){
 
     const onSubmit = (data) => {
         console.log(data)
-        axios.post(`${apiUrl}/users/login`, data).then(
+        //axios.post(`${apiUrl}/users/login`, data)
+        axios({
+            method: 'POST',
+            baseURL: apiUrl,
+            url: '/users/login',
+            data: data           
+        })        
+        .then(
             data => {
                 if(data){
                     console.log(data)
