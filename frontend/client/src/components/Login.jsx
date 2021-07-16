@@ -33,7 +33,7 @@ function Login(){
             data => {
                 if(data){
                     console.log(data)
-                    localStorage.setItem('token', data.data.token)
+                    localStorage.setItem('token', data.data.token)                    
                     history.push('/home')                      
                 }    
             }
