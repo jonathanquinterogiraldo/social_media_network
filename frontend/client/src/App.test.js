@@ -4,10 +4,14 @@ import { shallow } from 'enzyme'
 import App from './App';
 import { expect } from '@jest/globals'
 
-describe('', () => {
-  test('should mount <App /> correctly', async() => {
-      
-    const wrapper = shallow(<App />)
+describe('Unit Test <App /> Component', () => {
+
+  let wrapper;
+    beforeEach( () => {
+        wrapper = shallow(<App />)
+    })
+
+  test('should mount <App /> correctly', async() => {  
   
     expect(wrapper).toMatchSnapshot()    
   })  

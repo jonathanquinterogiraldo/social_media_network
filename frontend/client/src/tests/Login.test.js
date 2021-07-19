@@ -5,20 +5,21 @@ import Login from '../components/Login'
 import { expect } from '@jest/globals'
 
 describe('Unit Test <Login /> Component', () => {
-    test('should mount <Login /> correctly', () => {
 
-        const wrapper = shallow(<Login />)
+    let wrapper;
+    beforeEach( () => {
+        wrapper = shallow(<Login />)
+    })
 
-        expect(wrapper).toMatchSnapshot() 
-        
+    test('should mount <Login /> correctly', () => {        
+
+        expect(wrapper).toMatchSnapshot()         
     })   
 
     test('should show title <Login /> wcomponent ', () => {
 
-        const expectedTitle = 'Inicio de Sesión'
-        const wrapper = shallow(<Login />)
-        const title = wrapper.find('h3').text().trim()
-        console.log(title)
+        const expectedTitle = 'Inicio de Sesión'        
+        const title = wrapper.find('h3').text().trim()        
 
         expect(title).toBe(expectedTitle)        
     })   

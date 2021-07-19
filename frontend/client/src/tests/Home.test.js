@@ -5,11 +5,14 @@ import Home from '../components/Home'
 import { expect } from '@jest/globals'
 
 describe('Unit Test <Home /> Component', () => {
-    test('should mount <Home /> correctly', () => {
 
-        const wrapper = shallow(<Home />)
+    let wrapper;
+    beforeEach( () => {
+        wrapper = shallow(<Home />)
+    })
 
-        expect(wrapper).toMatchSnapshot() 
-        
+    test('should mount <Home /> correctly', () => {        
+
+        expect(wrapper).toMatchSnapshot()    
     })    
 })

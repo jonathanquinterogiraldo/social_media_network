@@ -5,19 +5,21 @@ import Register from '../components/Register'
 import { expect } from '@jest/globals'
 
 describe('Unit Test <Register /> Component', () => {
-    test('should mount <Register /> correctly', async() => {
-      
-        const wrapper = shallow(<Register />)
+
+    let wrapper;
+    beforeEach( () => {
+        wrapper = shallow(<Register />)
+    })
+
+    test('should mount <Register /> correctly', async() => {        
 
         expect(wrapper).toMatchSnapshot()    
     })
 
     test('should show title register component ', () => {
 
-        const expectedTitle = 'Regístrese'
-        const wrapper = shallow(<Register />)
-        const title = wrapper.find('h3').text().trim()
-        console.log(title)
+        const expectedTitle = 'Regístrese'        
+        const title = wrapper.find('h3').text().trim()    
 
         expect(title).toBe(expectedTitle)        
     })    
