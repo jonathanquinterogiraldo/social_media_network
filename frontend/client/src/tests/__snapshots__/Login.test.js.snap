@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit Test <Login /> Component should mount <Login /> correctly 1`] = `
+<div>
+  <Form
+    inline={false}
+    onSubmit={[Function]}
+  >
+    <Container
+      fluid={false}
+    >
+      <Row
+        noGutters={false}
+      >
+        <Col>
+          <h3>
+            Inicio de Sesión
+          </h3>
+        </Col>
+      </Row>
+    </Container>
+    <FormGroup>
+      <FormRow>
+        <Col
+          sm="auto"
+        >
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            Correo
+          </FormLabel>
+          <FormControl
+            name="email"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Digite su correo"
+            type="email"
+          />
+        </Col>
+      </FormRow>
+    </FormGroup>
+    <FormGroup>
+      <FormRow>
+        <Col
+          sm="auto"
+        >
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            Contraseña
+          </FormLabel>
+          <FormControl
+            name="password"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Digite su correo"
+            type="password"
+          />
+        </Col>
+      </FormRow>
+    </FormGroup>
+    <Button
+      active={false}
+      disabled={false}
+      type="submit"
+      variant="primary"
+    >
+      Enviar
+    </Button>
+  </Form>
+</div>
+`;

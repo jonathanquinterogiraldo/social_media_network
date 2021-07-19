@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` should mount <App /> correctly 1`] = `
+<div
+  className="App"
+>
+  <Switch>
+    <Route
+      exact={true}
+      path="/Login"
+    >
+      <Login />
+    </Route>
+    <ProtectedRoute
+      path="/Home"
+    >
+      <Home />
+    </ProtectedRoute>
+    <Route
+      exact={true}
+      path="/Register"
+    >
+      <Register />
+    </Route>
+    <Route
+      path="/"
+    >
+      <Login />
+    </Route>
+  </Switch>
+</div>
+`;
+
+exports[`should mount <App /> correctly 1`] = `
+<div
+  className="App"
+>
+  <Switch>
+    <Route
+      exact={true}
+      path="/Login"
+    >
+      <Login />
+    </Route>
+    <ProtectedRoute
+      path="/Home"
+    >
+      <Home />
+    </ProtectedRoute>
+    <Route
+      exact={true}
+      path="/Register"
+    >
+      <Register />
+    </Route>
+    <Route
+      path="/"
+    >
+      <Login />
+    </Route>
+  </Switch>
+</div>
+`;

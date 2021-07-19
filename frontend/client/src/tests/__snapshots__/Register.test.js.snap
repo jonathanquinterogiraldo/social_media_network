@@ -1,0 +1,160 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit Test <Register /> Component should mount <Register /> correctly 1`] = `
+<div
+  className="Register"
+>
+  <Form
+    inline={false}
+    onSubmit={[Function]}
+  >
+    <Container
+      fluid={false}
+    >
+      <Row
+        noGutters={false}
+      >
+        <Col>
+          <h3>
+            Regístrese
+          </h3>
+        </Col>
+      </Row>
+    </Container>
+    <FormGroup>
+      <FormRow>
+        <Col
+          sm="auto"
+        >
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            Nombre
+          </FormLabel>
+          <FormControl
+            name="name"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Digite su nombre"
+            type="name"
+          />
+        </Col>
+      </FormRow>
+    </FormGroup>
+    <FormGroup>
+      <FormRow>
+        <Col
+          sm="auto"
+        >
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            Primer Apellido
+          </FormLabel>
+          <FormControl
+            name="first_lastname"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Digite su primer apellido"
+            type="first_lastname"
+          />
+        </Col>
+      </FormRow>
+    </FormGroup>
+    <FormGroup>
+      <FormRow>
+        <Col
+          sm="auto"
+        >
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            Segundo Apellido
+          </FormLabel>
+          <FormControl
+            name="second_lastname"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Digite su segundo apellido"
+            type="second_lastname"
+          />
+        </Col>
+      </FormRow>
+    </FormGroup>
+    <FormGroup>
+      <FormRow>
+        <Col
+          sm="auto"
+        >
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            Usuario
+          </FormLabel>
+          <FormControl
+            name="nickname"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Digite su suario"
+            type="nickname"
+          />
+        </Col>
+      </FormRow>
+    </FormGroup>
+    <FormGroup>
+      <FormRow>
+        <Col
+          sm="auto"
+        >
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            Correo
+          </FormLabel>
+          <FormControl
+            name="email"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Digite su correo"
+            type="email"
+          />
+        </Col>
+      </FormRow>
+    </FormGroup>
+    <FormGroup>
+      <FormRow>
+        <Col
+          sm="auto"
+        >
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            Contraseña
+          </FormLabel>
+          <FormControl
+            name="password"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Digite su correo"
+            type="password"
+          />
+        </Col>
+      </FormRow>
+    </FormGroup>
+    <Button
+      active={false}
+      disabled={false}
+      type="submit"
+      variant="primary"
+    >
+      Enviar
+    </Button>
+  </Form>
+</div>
+`;

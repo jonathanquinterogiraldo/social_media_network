@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit Test <Home /> Component should mount <Home /> correctly 1`] = `
+<div
+  className="Home"
+>
+  <Form
+    inline={false}
+    onSubmit={[Function]}
+  >
+    <Button
+      active={false}
+      disabled={false}
+      type="submit"
+      variant="danger"
+    >
+      Salir
+    </Button>
+  </Form>
+</div>
+`;
