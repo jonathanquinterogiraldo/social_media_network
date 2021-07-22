@@ -1,8 +1,9 @@
 import React from "react"
 import axios from 'axios'
-import { Form, Button, Col, Container, Row } from 'react-bootstrap'
+import { Form, Button, Col, Container, Row, FormGroup } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
+import '../styles/components/login.css';
 
 const apiUrl = process.env.REACT_APP_API_URL
 
@@ -45,18 +46,12 @@ function Login() {
 
   return (
     <div>
-
-
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Container>
-          <Row >
-            <Col><span className='font-weight-bold'>Inicio de Sesión</span></Col>
-          </Row>
-        </Container>
-        <Form.Group className="mb-3">
+      <Form className='login-form' onSubmit={handleSubmit(onSubmit)}>
+        <h1><span className='font-weight-bold'>twittor</span></h1>
+        <Form.Group >
           <Form.Row>
-            <Col sm='auto'>
-              <Form.Label>Correo</Form.Label>
+            <Col>
+              <Form.Label className='mt-3'>Correo</Form.Label>
               <Form.Control id='email'
                 type='email'
                 placeholder='Digite su correo'
@@ -69,7 +64,7 @@ function Login() {
         </Form.Group>
         <Form.Group>
           <Form.Row>
-            <Col sm='auto'>
+            <Col>
               <Form.Label>Contraseña</Form.Label>
               <Form.Control type='password'
                 placeholder='Digite su contraseña'
@@ -80,7 +75,7 @@ function Login() {
             </Col>
           </Form.Row>
         </Form.Group>
-        <Button id='button' type='submit'>Enviar</Button>
+        <Button className='btn-md ' id='button' type='submit'>Login</Button>
       </Form>
     </div>
   )

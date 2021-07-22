@@ -1,0 +1,11 @@
+.login-form{
+  height: 100%;
+  border: solid 1px gainsboro;
+  border-radius: 8px;
+  margin: auto; 
+  margin-top: 250px;
+  max-width: 330px;
+  padding: 30px; 
+} 
+  
+ 
