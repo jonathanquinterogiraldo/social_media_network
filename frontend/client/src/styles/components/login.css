@@ -1,5 +1,9 @@
-.login-form{
+body {
+  background-color: gainsboro;
+}
+.login-form{  
   height: 100%;
+  background-color: white;
   border: solid 1px gainsboro;
   border-radius: 8px;
   margin: auto; 

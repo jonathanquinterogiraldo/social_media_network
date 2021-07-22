@@ -61,8 +61,12 @@ function Register() {
         }
       }
     ).catch(
-      error => {
-        console.log(error)
+      (error) => {
+        swal({
+          text: 'Un error ha ocurrido',
+          icon: 'error',
+          button: 'Ok'
+        })
       }
     )
   }
@@ -87,12 +91,12 @@ function Register() {
         <span className='text-danger text-small d-block mb-2'>
           {errors.name && errors.name.message}
         </span>
-        <label className='mt-2'>Primer Apellido</label>
+        <label className='mt-2'>Apellidos</label>
         <input className='form-control my-2'
-          name='first_lastname'
+          name='lastname'
           type='text'
           placeholder='Digite su primer apellido'
-          {...register('first_lastname', {
+          {...register('lastname', {
             required: {
               value: true,
               message: 'El primer apellido es obligatorio'
@@ -100,17 +104,8 @@ function Register() {
           })}
         />
         <span className='text-danger text-small d-block mb-2'>
-          {errors.first_lastname && errors.first_lastname.message}
+          {errors.lastname && errors.lastname.message}
         </span>
-        <label className='mt-2'>Segundo Apellido</label>
-        <input className='form-control my-2'
-          name='second_lastname'
-          type='text'
-          placeholder='Digite su segundo apellido'
-          {...register('second_lastname', {
-
-          })}
-        />
         <label className='mt-2'>Usuario</label>
         <input className='form-control my-2'
           name='nickname'
@@ -149,7 +144,9 @@ function Register() {
           {...register('password', {
             required: {
               value: true,
-              message: 'La contraseña es obligatoria'
+              message: 'La contraseña es obligatoria',
+              minLength: 6,
+              maxLength: 8
             }
           })}
         />

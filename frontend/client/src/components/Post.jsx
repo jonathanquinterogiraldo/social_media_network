@@ -4,17 +4,14 @@ import { Form, Button, Col, Container, Row } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 
+
 export default function Post() {
 
   const history = useHistory();
 
   const apiUrl = process.env.REACT_APP_API_URL
 
-  const { register, handleSubmit } = useForm();
-
-  const newPost = register('content', {
-    require: true
-  })
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (data) => {
     console.log(data)
@@ -43,28 +40,24 @@ export default function Post() {
 
   return (
     <div>
-      <Form id='form' onSubmit={handleSubmit(onSubmit)}>
-        <Container>
-          <Row >
-            <Col><h3>Nuevo Post</h3></Col>
-          </Row>
-        </Container>
-        <Form.Group>
-          <Form.Row>
-            <Col sm='auto'>
-              <Form.Label>Nuevo Post</Form.Label>
-              <Form.Control id='newPost'
-                type='newPost'
-                placeholder='Digite su twitt'
-                onChange={newPost.onChange}
-                onBlur={newPost.onBlur}
-                name={newPost.name}
-                ref={newPost.ref} />
-            </Col>
-          </Form.Row>
-        </Form.Group>
-        <Button id='button' type='submit'>Crear</Button>
-      </Form>
+      <form className='login-form' onSubmit={handleSubmit(onSubmit)}>
+        <h1><span className='font-weight-bold'>Nuevo Post</span></h1>
+        <input
+          className="form-control my-2"
+          name="content"
+          type='text'
+          {...register('content', {
+            required: {
+              value: true,
+              message: 'Debe tener contenido'
+            }
+          })}
+        />
+        <span className="text-danger text-small d-block mb-2">
+          {errors.content && errors.content.message}
+        </span>
+        <button className="btn btn-primary btn-block mt-4" >Agregar</button>
+      </form>
     </div>
   )
 }

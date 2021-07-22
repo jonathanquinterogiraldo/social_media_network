@@ -70,7 +70,9 @@ function Login() {
           {...register("password", {
             required: {
               value: true,
-              message: 'La contraseña es obligatoria'
+              message: 'La contraseña es obligatoria',
+              minLength: 6,
+              maxLength: 8
             }
           })}
         />

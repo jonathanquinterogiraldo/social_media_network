@@ -55,7 +55,7 @@ function Home() {
   }
 
   return (
-    <div className='Home'>
+    <div>
       {posts.map((post) => <p key={post._id}>{post.content}</p>)}
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Button variant="danger" type='submit'>Salir</Button>

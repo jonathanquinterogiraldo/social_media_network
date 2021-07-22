@@ -11,8 +11,6 @@ module.exports = {
       console.log(error)
       response.status(500).json({ error })
     }
-    //response.json({ userSession: false })
-
   },
   async posts(request, response) {
 
