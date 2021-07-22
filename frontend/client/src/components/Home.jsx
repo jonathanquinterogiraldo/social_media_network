@@ -3,7 +3,8 @@ import axios from 'axios'
 import { Form, Button, Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { useHistory } from "react-router-dom"
+import { useHistory } from 'react-router-dom'
+import swal from 'sweetalert'
 
 const apiUrl = process.env.REACT_APP_API_URL
 
@@ -37,8 +38,16 @@ function Home() {
   }, [])
 
   const onSubmit = () => {
-    localStorage.removeItem('token')
-    history.push('/login')
+    swal({
+      text: '¿Desea cerrar la sesión?',
+      icon: 'warning',
+      buttons: ['No', 'Sí']
+    }).then(response => {
+      if (response) {
+        localStorage.removeItem('token')
+        history.push('/login')
+      }
+    })
   }
 
   const onSubmitPost = () => {
