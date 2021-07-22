@@ -6,13 +6,14 @@ import { expect } from '@jest/globals'
 
 describe('Unit Test <Home /> Component', () => {
 
-    let wrapper;
-    beforeEach( () => {
-        wrapper = shallow(<Home />)
-    })
+  let wrapper = shallow(<Home />);
 
-    test('should mount <Home /> correctly', () => {        
+  beforeEach(() => {
+    wrapper = shallow(<Home />)
+  })
 
-        expect(wrapper).toMatchSnapshot()    
-    })    
+  test('should mount <Home /> correctly', () => {
+
+    expect(wrapper).toMatchSnapshot()
+  })
 })

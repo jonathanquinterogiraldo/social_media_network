@@ -6,7 +6,8 @@ import { expect } from '@jest/globals'
 
 describe('Unit Test <App /> Component', () => {
 
-  let wrapper;
+  let wrapper = shallow(<App />)
+
     beforeEach( () => {
         wrapper = shallow(<App />)
     })

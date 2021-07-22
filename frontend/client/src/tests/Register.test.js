@@ -6,21 +6,22 @@ import { expect } from '@jest/globals'
 
 describe('Unit Test <Register /> Component', () => {
 
-    let wrapper;
-    beforeEach( () => {
-        wrapper = shallow(<Register />)
-    })
+  let wrapper = shallow(<Register />)
 
-    test('should mount <Register /> correctly', async() => {        
+  beforeEach(() => {
+    wrapper = shallow(<Register />)
+  })
 
-        expect(wrapper).toMatchSnapshot()    
-    })
+  test('should mount <Register /> correctly', async () => {
 
-    test('should show title register component ', () => {
+    expect(wrapper).toMatchSnapshot()
+  })
 
-        const expectedTitle = 'Regístrese'        
-        const title = wrapper.find('h3').text().trim()    
+  test('should show title register component ', () => {
 
-        expect(title).toBe(expectedTitle)        
-    })    
+    const expectedTitle = 'Regístrese'
+    const title = wrapper.find('h3').text().trim()
+
+    expect(title).toBe(expectedTitle)
+  })
 })
