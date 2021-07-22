@@ -32,9 +32,18 @@ function Login() {
         }
       ).catch(
         error => {
+
+          let errorMessage = 'Usuario o contraseña incorrecta';
+          let errorIcon = 'warning';
+
+          if (error.message !== 'Request failed with status code 401') {
+            errorMessage = 'Este en el servidor'
+            errorIcon = 'error'
+          }
+
           swal({
-            text: 'Usuario o contraseña incorrecta',
-            icon: 'warning',
+            text: errorMessage,
+            icon: errorIcon,
             button: 'Ok'
           })
         }

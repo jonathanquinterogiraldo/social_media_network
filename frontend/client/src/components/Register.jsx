@@ -62,9 +62,20 @@ function Register() {
       }
     ).catch(
       (error) => {
+        let errorMessage = '';
+        let errorIcon = '';
+        if (error.message === 'Request failed with status code 401') {
+          errorMessage = 'Este correo ya se ecuentra registrado'
+          errorIcon = 'warning'
+        }
+        if (error.message === 'Request failed with status code 500') {
+          errorMessage = 'Error en el servidor'
+          errorIcon = 'error'
+        }
+
         swal({
-          text: 'Un error ha ocurrido',
-          icon: 'error',
+          text: errorMessage,
+          icon: errorIcon,
           button: 'Ok'
         })
       }
