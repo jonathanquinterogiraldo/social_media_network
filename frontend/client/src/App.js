@@ -10,7 +10,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Login from './components/Login'
 import Home from './components/Home'
 import Register from './components/Register'
-import Post from './components/Post'
 
 function ProtectedRoute(props) {
 
@@ -40,9 +39,6 @@ function App() {
         </Route>
         <ProtectedRoute path='/Home'>
           <Home />
-        </ProtectedRoute>
-        <ProtectedRoute path='/Post'>
-          <Post />
         </ProtectedRoute>
         <Route exact path='/Register'>
           <Register />

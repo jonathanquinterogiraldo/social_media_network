@@ -1,9 +1,9 @@
 import { Form, Button, Col, Container, Row } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 import '../styles/components/register.css'
-import swal from 'sweetalert'
+import Swal from 'sweetalert2'
 
 const apiUrl = process.env.REACT_APP_API_URL
 
@@ -12,30 +12,6 @@ function Register() {
   const history = useHistory()
 
   const { register, handleSubmit, formState: { errors } } = useForm();
-
-  // const name = register('name', {
-  //   require: true
-  // })
-
-  // const first_lastname = register('first_lastname', {
-  //   require: true
-  // })
-
-  // const second_lastname = register('second_lastname', {
-  //   require: true
-  // })
-
-  // const nickname = register('nickname', {
-  //   require: true
-  // })
-
-  // const email = register('email', {
-  //   require: true
-  // })
-
-  // const password = register('password', {
-  //   require: true
-  // })
 
   const onSubmit = (data) => {
     console.log(data)
@@ -47,10 +23,10 @@ function Register() {
     }).then(
       data => {
         if (data) {
-          swal({
+          Swal.fire({
             text: 'Usuario creado exitosamente',
             icon: 'success',
-            buttons: 'Aceptar'
+            confirmButtonText: `Aceptar`,
           }).then(response => {
             if (response) {
               console.log(data)
@@ -73,7 +49,7 @@ function Register() {
           errorIcon = 'error'
         }
 
-        swal({
+        Swal.fire({
           text: errorMessage,
           icon: errorIcon,
           button: 'Ok'
@@ -167,7 +143,7 @@ function Register() {
 
         <button className="btn btn-primary btn-block mt-4" >Registrarse</button>
         <div className='mt-4 text-center'>
-          <a href='/login'>Volver a inicio de sesión</a>
+          <Link to="/login">Volver a inicio de sesión</Link>
         </div>
       </form>
     </div>

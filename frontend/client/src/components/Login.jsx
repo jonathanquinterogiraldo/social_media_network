@@ -2,9 +2,9 @@ import React, { render } from "react"
 import axios from 'axios'
 import { Form, Button, Alert, Col, Container, Row, FormGroup } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import '../styles/components/login.css';
-import swal from 'sweetalert'
+import Swal from 'sweetalert2'
 
 const apiUrl = process.env.REACT_APP_API_URL
 
@@ -33,18 +33,17 @@ function Login() {
       ).catch(
         error => {
 
-          let errorMessage = 'Usuario o contraseña incorrecta';
+          let errorMessage = 'Usuario o contraseña incorrecta!';
           let errorIcon = 'warning';
 
           if (error.message !== 'Request failed with status code 401') {
-            errorMessage = 'Este en el servidor'
+            errorMessage = 'Este en el servidor!'
             errorIcon = 'error'
           }
 
-          swal({
-            text: errorMessage,
+          Swal.fire({
             icon: errorIcon,
-            button: 'Ok'
+            text: errorMessage
           })
         }
       )
@@ -91,7 +90,7 @@ function Login() {
 
         <button className="btn btn-primary btn-block mt-4" >Iniciar sesión</button>
         <div className='mt-4 text-center'>
-          <a href='/register'>Regístrese</a>
+          <Link to="/register">Regístrese</Link>
         </div>
       </form>
     </>
