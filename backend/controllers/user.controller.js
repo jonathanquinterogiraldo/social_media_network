@@ -5,13 +5,16 @@ const jwt = require('jsonwebtoken')
 module.exports = {
   async register(request, response) {
 
+    const { file = {} } = request.body
+
     const { email, password, ...data } = request.body
     const userExist = await UserModel.findOne({ email })
 
-    if (!userExist) {
+    if (!userExist) { 
       try {
+
         const encriptedPassword = await bcrypt.hash(password, 10)
-        const newUser = await UserModel.create({ ...data, email, password: encriptedPassword })
+        const newUser = await UserModel.create({ ...data, image_url: file.secure_url, email, password: encriptedPassword })
         const token = jwt.sign(
           { id: newUser._id },
           process.env.SECRET,

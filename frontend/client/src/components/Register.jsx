@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useHistory, Link } from "react-router-dom"
 import '../styles/components/register.css'
 import Swal from 'sweetalert2'
+import { useState } from 'react'
 
 const apiUrl = process.env.REACT_APP_API_URL
 
@@ -13,15 +14,55 @@ function Register() {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
+  const [file, setFile] = useState(null)
+  const [imageRead, setImageRead] = useState(null)
+
+  const handleFile = (event) => {
+    setFile(event.target.files[0])
+    readFile(event.target.files[0])
+  }
+
+  const readFile = (file) => {
+    const reader = new FileReader()
+
+    reader.onload = (event) => {
+      setImageRead(event.target.result)
+      Swal.fire({
+        title: 'Tu imagen se ha cargado!',
+        imageUrl: event.target.result,
+        confirmButtonText: `Aceptar`,
+      })
+    }
+
+    reader.readAsDataURL(file)      
+  }  
+
   const onSubmit = (data) => {
-    console.log(data)
+
+    const formData = new FormData()
+
+    formData.append('name', data.name)
+    formData.append('lastname', data.lastname)
+    formData.append('nickname', data.nickname)
+    formData.append('email', data.email)
+    formData.append('password', data.password)
+
+    if (file) {
+      formData.append('file', file, file.name)
+    }
+
+    console.log(formData)
     axios({
       method: 'POST',
       baseURL: apiUrl,
       url: '/users/register',
-      data: data
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
     }).then(
       data => {
+        console.log(data)
         if (data) {
           Swal.fire({
             text: 'Usuario creado exitosamente',
@@ -140,6 +181,16 @@ function Register() {
         <span className="text-danger text-small d-block mb-2">
           {errors.password && errors.password.message}
         </span>
+        <span>
+          <label className='mt-2'>Imagen de perfil</label>          
+        </span>               
+        <fieldset>
+          <input variant='light' 
+          type='file' 
+          name='file'          
+          accept='image/*' 
+          onChange={handleFile} />     
+        </fieldset>
 
         <button className="btn btn-primary btn-block mt-4" >Registrarse</button>
         <div className='mt-4 text-center'>

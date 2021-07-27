@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap'
 import Swal from 'sweetalert2'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+import '../styles/components/newPost.css';
 
 export default function NewPost() {
 
@@ -13,9 +14,9 @@ export default function NewPost() {
   const onSubmit = () => {
 
     Swal.fire({
-      title: 'Nuevo Post',
+      title: '¿Qué estás pensando?',
       input: 'text',
-      confirmButtonText: 'Postear!',
+      confirmButtonText: 'Publicar',
       cancelButtonText: 'Cancelar',
       showCancelButton: true,
       customClass: {
@@ -45,7 +46,7 @@ export default function NewPost() {
                 if (data) {
                   console.log(data)
                   window.location.reload();
-                  history.push('/home')
+                  //history.push('/home')
                 }
               }
             ).catch(
@@ -53,17 +54,14 @@ export default function NewPost() {
                 console.log(error)
               }
             )
-
         }
       }
     })
-
   }
 
   return (
     <div>
-      <Button variant="primary" onClick={onSubmit}>Nuevo Post </Button>
-
+      <Button className='postButton' variant="primary" onClick={onSubmit}>Nuevo Post</Button>
     </div>
   )
 }

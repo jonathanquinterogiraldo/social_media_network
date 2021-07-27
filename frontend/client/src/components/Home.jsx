@@ -42,9 +42,7 @@ function Home() {
   return (
     <div>
       <Header />
-
-      {posts.map((post) => <p key={post._id}>{post.content}</p>)}
-
+        {posts.map((post) => <p key={post._id}>{post.content}</p>)}
       <NewPost />
 
     </div>

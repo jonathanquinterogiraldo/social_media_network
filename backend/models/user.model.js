@@ -5,7 +5,8 @@ const UserSchema = Schema({
   lastname: String,
   nickname: String,
   email: String,
-  password: String
+  password: String,
+  image_url: String
 })
 
 const UserModel = model('User', UserSchema)
